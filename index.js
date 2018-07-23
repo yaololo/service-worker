@@ -6,8 +6,7 @@ const path = require("path"); //static path for client side
 const app = express();
 
 //Ser static path
-app.use;
-express.static(path.join(__dirname, "client"));
+app.use(express.static(path.join(__dirname, "client")));
 
 app.use(bodyParser.json());
 const publicVipadKey =
