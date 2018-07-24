@@ -25,6 +25,7 @@ webpush.setVapidDetails(
 app.post("/subscribe", (req, res) => {
   //get pushSubscription Object
   const subscription = req.body;
+  console.log(subscription);
 
   // send 201 -resource created
   res.status(201).json({});
