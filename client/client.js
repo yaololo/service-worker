@@ -6,7 +6,6 @@ const publicVipadKey =
 if ("serviceWorker" in navigator) {
   send().catch(err => console.error(err));
 }
-h;
 // register te service worker abd register push and send push
 async function send() {
   // register service worker
@@ -27,7 +26,7 @@ async function send() {
   //send push notification
   console.log("sending");
 
-  await fetch("/subscribe", {
+  await fetch("/register", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
