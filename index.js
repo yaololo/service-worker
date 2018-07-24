@@ -38,6 +38,13 @@ app.post("/subscribe", (req, res) => {
     .catch(error => console.error(error));
 });
 
-const port = 5000;
+// const port = 5000;
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").load();
+}
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const server = app.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on port ${server.address().port}...`);
+});
+
+// app.listen(port, () => console.log(`Server started on port ${port}`));
