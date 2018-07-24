@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const path = require("path"); //static path for client side
 
 const app = express();
-
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").load();
+}
 //Ser static path
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -24,8 +26,10 @@ webpush.setVapidDetails(
 //subscribe Route
 app.post("/subscribe", (req, res) => {
   //get pushSubscription Object
-  const subscription = req.body;
-  console.log(subscription);
+  let subscription = req.body;
+  subscription.endpoint = process.env.LOCALENDPOINT;
+
+  // console.log(subscription);
 
   // send 201 -resource created
   res.status(201).json({});
@@ -38,11 +42,6 @@ app.post("/subscribe", (req, res) => {
     .sendNotification(subscription, payload)
     .catch(error => console.error(error));
 });
-
-// const port = 5000;
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").load();
-}
 
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${server.address().port}...`);
