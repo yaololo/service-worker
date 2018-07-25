@@ -15,14 +15,17 @@ app.use(bodyParser.json());
 
 app.use("/", router);
 
-mongoose.connect(
-  process.env.MONGODB_URI,
-  function(err) {
-    if (err) throw err;
-    console.log("db connected successfully");
+mongoose
+  .connect(
+    process.env.MONGODB_URI,
+    function(err) {
+      if (err) throw err;
+      console.log("db connected successfully");
 
-    const server = app.listen(process.env.PORT || 3000, () => {
-      console.log(`Listening on port ${server.address().port}...`);
-    });
-  }
-);
+      const server = app.listen(process.env.PORT || 3000, () => {
+        console.log(`Listening on port ${server.address().port}...`);
+      });
+    },
+    { useNewUrlParser: true }
+  )
+  .catch(err => console.error(err));

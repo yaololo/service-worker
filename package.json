@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:db": "mongod --dbpath server/db/data"
+    "start:db": "mongod --dbpath server/data/db"
   },
   "keywords": [],
   "author": "",
