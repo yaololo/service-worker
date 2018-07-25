@@ -1,3 +1,9 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/test");
+const subscriptionSchema = mongoose.Schema({
+  subscription: {},
+  created: {
+    type: Date,
+    default: Date.now
+  }
+});
